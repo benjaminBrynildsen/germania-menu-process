@@ -163,6 +163,18 @@
       box-shadow: 0 12px 32px rgba(0,0,0,0.06);
       border-color: var(--accent);
     }
+    .step-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+    .step-content.has-img { padding-top: 0; }
+    .step-content.has-img .step-body { padding: 28px 32px 32px; }
+    @media (max-width: 768px) {
+      .step-img { height: 160px; }
+      .step-content.has-img .step-body { padding: 20px 24px 24px; }
+    }
     .step:nth-child(odd) .step-content { margin-right: auto; }
     .step:nth-child(even) .step-content { margin-left: auto; }
 
@@ -362,17 +374,19 @@
   <div class="step">
     <div class="step-dot"></div>
     <div class="step-content">
-      <div class="step-icon">💡</div>
-      <div class="step-week">Weeks 1–2</div>
-      <div class="step-number">01</div>
-      <div class="step-title">Idea Submissions</div>
-      <div class="step-desc">
-        Every seasonal menu starts with our team. Baristas, managers, and kitchen staff submit drink ideas — flavor combos, cultural inspirations, customer requests they've been hearing. No idea is too wild at this stage.
-      </div>
-      <div class="step-detail">
-        <div class="step-detail-item"><span class="dot"></span>Open submission form goes out to all 4 locations</div>
-        <div class="step-detail-item"><span class="dot"></span>Staff pitch flavor profiles, ingredient ideas, and vibes</div>
-        <div class="step-detail-item"><span class="dot"></span>Typically receive 30–50 unique submissions</div>
+      <div class="step-body">
+        <div class="step-icon">💡</div>
+        <div class="step-week">Weeks 1–2</div>
+        <div class="step-number">01</div>
+        <div class="step-title">Idea Submissions</div>
+        <div class="step-desc">
+          Every seasonal menu starts with our team. Baristas, managers, and kitchen staff submit drink ideas — flavor combos, cultural inspirations, customer requests they've been hearing. No idea is too wild at this stage.
+        </div>
+        <div class="step-detail">
+          <div class="step-detail-item"><span class="dot"></span>Open submission form goes out to all 4 locations</div>
+          <div class="step-detail-item"><span class="dot"></span>Staff pitch flavor profiles, ingredient ideas, and vibes</div>
+          <div class="step-detail-item"><span class="dot"></span>Typically receive 30–50 unique submissions</div>
+        </div>
       </div>
     </div>
   </div>
@@ -381,17 +395,19 @@
   <div class="step">
     <div class="step-dot"></div>
     <div class="step-content">
-      <div class="step-icon">🗳️</div>
-      <div class="step-week">Week 3</div>
-      <div class="step-number">02</div>
-      <div class="step-title">Team Voting</div>
-      <div class="step-desc">
-        The full team votes on their favorites. Every voice matters — from our newest barista to our head chef. The top vote-getters move forward to development.
-      </div>
-      <div class="step-detail">
-        <div class="step-detail-item"><span class="dot"></span>Anonymous voting across all locations</div>
-        <div class="step-detail-item"><span class="dot"></span>Top 8–12 concepts advance to recipe development</div>
-        <div class="step-detail-item"><span class="dot"></span>Team sees results live — builds excitement</div>
+      <div class="step-body">
+        <div class="step-icon">🗳️</div>
+        <div class="step-week">Week 3</div>
+        <div class="step-number">02</div>
+        <div class="step-title">Team Voting</div>
+        <div class="step-desc">
+          The full team votes on their favorites. Every voice matters — from our newest barista to our head chef. The top vote-getters move forward to development.
+        </div>
+        <div class="step-detail">
+          <div class="step-detail-item"><span class="dot"></span>Anonymous voting across all locations</div>
+          <div class="step-detail-item"><span class="dot"></span>Top 8–12 concepts advance to recipe development</div>
+          <div class="step-detail-item"><span class="dot"></span>Team sees results live — builds excitement</div>
+        </div>
       </div>
     </div>
   </div>
@@ -399,18 +415,21 @@
   <!-- Step 3: Finalization -->
   <div class="step">
     <div class="step-dot"></div>
-    <div class="step-content">
-      <div class="step-icon">📋</div>
-      <div class="step-week">Week 4</div>
-      <div class="step-number">03</div>
-      <div class="step-title">Concept Finalization</div>
-      <div class="step-desc">
-        Leadership reviews the top picks, considers seasonality, ingredient sourcing, menu balance, and operational feasibility. The final lineup gets the green light.
-      </div>
-      <div class="step-detail">
-        <div class="step-detail-item"><span class="dot"></span>Balance sweet, bridge, artisanal, and tea categories</div>
-        <div class="step-detail-item"><span class="dot"></span>Evaluate ingredient availability and cost</div>
-        <div class="step-detail-item"><span class="dot"></span>Final menu of 5–8 new seasonal drinks selected</div>
+    <div class="step-content has-img">
+      <img class="step-img" src="img/latte-art.jpg" alt="Latte art at Germania">
+      <div class="step-body">
+        <div class="step-icon">📋</div>
+        <div class="step-week">Week 4</div>
+        <div class="step-number">03</div>
+        <div class="step-title">Concept Finalization</div>
+        <div class="step-desc">
+          Leadership reviews the top picks, considers seasonality, ingredient sourcing, menu balance, and operational feasibility. The final lineup gets the green light.
+        </div>
+        <div class="step-detail">
+          <div class="step-detail-item"><span class="dot"></span>Balance sweet, bridge, artisanal, and tea categories</div>
+          <div class="step-detail-item"><span class="dot"></span>Evaluate ingredient availability and cost</div>
+          <div class="step-detail-item"><span class="dot"></span>Final menu of 5–8 new seasonal drinks selected</div>
+        </div>
       </div>
     </div>
   </div>
@@ -418,19 +437,22 @@
   <!-- Step 4: Recipe Dev -->
   <div class="step">
     <div class="step-dot"></div>
-    <div class="step-content">
-      <div class="step-icon">🧪</div>
-      <div class="step-week">Weeks 5–8</div>
-      <div class="step-number">04</div>
-      <div class="step-title">Recipe Development</div>
-      <div class="step-desc">
-        This is where the magic happens. Our Chef and team spend 3–4 weeks perfecting every recipe — haus-made syrups, sauce ratios, temperature profiles, and presentation. Every drink gets tested dozens of times.
-      </div>
-      <div class="step-detail">
-        <div class="step-detail-item"><span class="dot"></span>Haus-made syrups and sauces crafted from scratch</div>
-        <div class="step-detail-item"><span class="dot"></span>Multiple rounds of taste testing with the full team</div>
-        <div class="step-detail-item"><span class="dot"></span>Nutrition calculated from actual recipe ingredients</div>
-        <div class="step-detail-item"><span class="dot"></span>Cost analysis ensures quality at a fair price</div>
+    <div class="step-content has-img">
+      <img class="step-img" src="img/bake-haus.jpg" alt="Recipe development at Germania">
+      <div class="step-body">
+        <div class="step-icon">🧪</div>
+        <div class="step-week">Weeks 5–8</div>
+        <div class="step-number">04</div>
+        <div class="step-title">Recipe Development</div>
+        <div class="step-desc">
+          This is where the magic happens. Our Chef and team spend 3–4 weeks perfecting every recipe — haus-made syrups, sauce ratios, temperature profiles, and presentation. Every drink gets tested dozens of times.
+        </div>
+        <div class="step-detail">
+          <div class="step-detail-item"><span class="dot"></span>Haus-made syrups and sauces crafted from scratch</div>
+          <div class="step-detail-item"><span class="dot"></span>Multiple rounds of taste testing with the full team</div>
+          <div class="step-detail-item"><span class="dot"></span>Nutrition calculated from actual recipe ingredients</div>
+          <div class="step-detail-item"><span class="dot"></span>Cost analysis ensures quality at a fair price</div>
+        </div>
       </div>
     </div>
   </div>
@@ -438,19 +460,22 @@
   <!-- Step 5: Pre-Launch -->
   <div class="step">
     <div class="step-dot"></div>
-    <div class="step-content">
-      <div class="step-icon">📸</div>
-      <div class="step-week">Weeks 9–10</div>
-      <div class="step-number">05</div>
-      <div class="step-title">Pre-Launch</div>
-      <div class="step-desc">
-        Recipes are locked. Now we prepare for launch — training every barista across all 4 locations, shooting photos, building signage, and updating our digital menus. Every location launches simultaneously.
-      </div>
-      <div class="step-detail">
-        <div class="step-detail-item"><span class="dot"></span>Staff training at all 4 Germania locations</div>
-        <div class="step-detail-item"><span class="dot"></span>Professional photography and menu design</div>
-        <div class="step-detail-item"><span class="dot"></span>POS system updates and ingredient ordering</div>
-        <div class="step-detail-item"><span class="dot"></span>Social media teasers build anticipation</div>
+    <div class="step-content has-img">
+      <img class="step-img" src="img/winter-lineup.jpg" alt="Winter menu lineup">
+      <div class="step-body">
+        <div class="step-icon">📸</div>
+        <div class="step-week">Weeks 9–10</div>
+        <div class="step-number">05</div>
+        <div class="step-title">Pre-Launch</div>
+        <div class="step-desc">
+          Recipes are locked. Now we prepare for launch — training every barista across all 4 locations, shooting photos, building signage, and updating our digital menus. Every location launches simultaneously.
+        </div>
+        <div class="step-detail">
+          <div class="step-detail-item"><span class="dot"></span>Staff training at all 4 Germania locations</div>
+          <div class="step-detail-item"><span class="dot"></span>Professional photography and menu design</div>
+          <div class="step-detail-item"><span class="dot"></span>POS system updates and ingredient ordering</div>
+          <div class="step-detail-item"><span class="dot"></span>Social media teasers build anticipation</div>
+        </div>
       </div>
     </div>
   </div>
@@ -458,18 +483,21 @@
   <!-- Step 6: Launch -->
   <div class="step">
     <div class="step-dot"></div>
-    <div class="step-content">
-      <div class="step-icon">🚀</div>
-      <div class="step-week">Launch Day</div>
-      <div class="step-number">06</div>
-      <div class="step-title">Menu Launch</div>
-      <div class="step-desc">
-        Launch day is a celebration. All 4 locations debut the new menu together. Our team is excited because they helped create it — and that energy is contagious. Your new favorite drink is waiting.
-      </div>
-      <div class="step-detail">
-        <div class="step-detail-item"><span class="dot"></span>Simultaneous launch across Alton, Godfrey, East Alton & Jerseyville</div>
-        <div class="step-detail-item"><span class="dot"></span>Team-created drinks get credited to their inventors</div>
-        <div class="step-detail-item"><span class="dot"></span>Fresh haus-made ingredients prepared for day one</div>
+    <div class="step-content has-img">
+      <img class="step-img" src="img/spring-lineup.jpg" alt="Spring 2026 menu launch">
+      <div class="step-body">
+        <div class="step-icon">🚀</div>
+        <div class="step-week">Launch Day</div>
+        <div class="step-number">06</div>
+        <div class="step-title">Menu Launch</div>
+        <div class="step-desc">
+          Launch day is a celebration. All 4 locations debut the new menu together. Our team is excited because they helped create it — and that energy is contagious. Your new favorite drink is waiting.
+        </div>
+        <div class="step-detail">
+          <div class="step-detail-item"><span class="dot"></span>Simultaneous launch across Alton, Godfrey, East Alton & Jerseyville</div>
+          <div class="step-detail-item"><span class="dot"></span>Team-created drinks get credited to their inventors</div>
+          <div class="step-detail-item"><span class="dot"></span>Fresh haus-made ingredients prepared for day one</div>
+        </div>
       </div>
     </div>
   </div>
