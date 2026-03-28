@@ -95,32 +95,27 @@
       max-width: 1100px; margin: 0 auto; padding: 40px 16px 100px;
       position: relative;
     }
-    .timeline-line {
-      position: absolute;
-      left: 50%;
-      top: 0;
-      bottom: 0;
+    .timeline-line { display: none; }
+    .timeline-line-fill { display: none; }
+
+    /* CONNECTOR between steps */
+    .step-connector {
       width: 2px;
+      height: 40px;
       background: var(--border);
-      transform: translateX(-50%);
+      margin: 0 auto;
+      transition: background 0.5s;
     }
-    .timeline-line-fill {
-      position: absolute;
-      left: 50%;
-      top: 0;
-      width: 2px;
-      height: 0;
-      background: linear-gradient(180deg, var(--accent), var(--accent-light));
-      transform: translateX(-50%);
-      transition: height 0.1s linear;
-    }
+    .step.visible + .step-connector { background: var(--accent); }
+    .step:first-child .step-connector { display: none; }
 
     /* STEP */
     .step {
       position: relative;
       display: flex;
       align-items: flex-start;
-      margin-bottom: 80px;
+      justify-content: center;
+      margin-bottom: 0;
       opacity: 0;
       transform: translateY(40px);
       transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
@@ -135,8 +130,8 @@
     .step-dot {
       position: absolute;
       left: 50%;
-      top: 24px;
-      width: 18px; height: 18px;
+      top: -12px;
+      width: 14px; height: 14px;
       background: var(--bg);
       border: 3px solid var(--border);
       border-radius: 50%;
@@ -147,7 +142,7 @@
     .step.visible .step-dot {
       border-color: var(--accent);
       background: var(--accent);
-      box-shadow: 0 0 0 6px var(--accent-glow);
+      box-shadow: 0 0 0 5px var(--accent-glow);
     }
 
     .step-content {
@@ -300,12 +295,12 @@
       .hero { padding: 60px 16px 40px; }
       .hero h1 { font-size: 2rem; }
       .hero p { font-size: 0.9rem; }
-      .timeline-line, .timeline-line-fill { left: 24px; }
-      .step { flex-direction: column !important; padding-left: 50px; margin-bottom: 48px; }
-      .step-dot { left: 24px; top: 0; }
+      .step { flex-direction: column !important; padding-left: 0; margin-bottom: 0; }
+      .step-dot { left: 50%; top: -10px; }
       .step-content { width: 100%; }
       .step:nth-child(odd) .step-content,
       .step:nth-child(even) .step-content { margin: 0; }
+      .step-connector { height: 32px; }
       .step-number { font-size: 2.2rem; }
       .step-title { font-size: 1.2rem; }
       .step-content { padding: 24px; }
@@ -391,6 +386,8 @@
     </div>
   </div>
 
+  <div class="step-connector"></div>
+
   <!-- Step 2: Voting -->
   <div class="step">
     <div class="step-dot"></div>
@@ -411,6 +408,8 @@
       </div>
     </div>
   </div>
+
+  <div class="step-connector"></div>
 
   <!-- Step 3: Finalization -->
   <div class="step">
@@ -433,6 +432,8 @@
       </div>
     </div>
   </div>
+
+  <div class="step-connector"></div>
 
   <!-- Step 4: Recipe Dev -->
   <div class="step">
@@ -457,6 +458,8 @@
     </div>
   </div>
 
+  <div class="step-connector"></div>
+
   <!-- Step 5: Pre-Launch -->
   <div class="step">
     <div class="step-dot"></div>
@@ -479,6 +482,8 @@
       </div>
     </div>
   </div>
+
+  <div class="step-connector"></div>
 
   <!-- Step 6: Launch -->
   <div class="step">
