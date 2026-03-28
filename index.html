@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <title>Our Menu Process — Germania Brew Haus</title>
+  <link rel="icon" type="image/x-icon" href="https://images.squarespace-cdn.com/content/v1/5a9816df7e3c3a7e13c823d5/82a42eeb-9208-4e69-ac85-d7b70a473f87/favicon.ico?format=100w"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5f3f0;
+      --bg-card: #ffffff;
+      --accent: #8b6914;
+      --accent-light: #a37d1e;
+      --accent-glow: rgba(139, 105, 20, 0.08);
+      --text: #1a1a1a;
+      --text-secondary: #555555;
+      --text-muted: #999999;
+      --border: #e0dcd6;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Work Sans', -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    body.embed-mode .nav { display: none; }
+    body.embed-mode .hero { padding-top: 40px; }
+
+    /* NAV */
+    .nav {
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 100; padding: 0 32px;
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; height: 72px;
+    }
+    .nav-logo { height: 50px; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 0.85rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-secondary); text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-mobile { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text); padding: 8px; }
+    @media (max-width: 768px) {
+      .nav { padding: 0 16px; }
+      .nav-mobile { display: block; }
+      .nav-links { display: none; }
+      .nav-inner { height: 60px; }
+      .nav-logo { height: 40px; }
+    }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 100px 24px 60px;
+      position: relative;
+    }
+    .hero h1 {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 16px;
+    }
+    .hero p {
+      font-weight: 300; font-size: 1.05rem; color: var(--text-secondary);
+      max-width: 560px; margin: 0 auto; line-height: 1.7;
+    }
+    .hero-divider { width: 60px; height: 3px; background: var(--accent); margin: 28px auto 0; }
+    .hero-seasons {
+      display: flex; gap: 8px; justify-content: center; margin-top: 32px; flex-wrap: wrap;
+    }
+    .hero-season {
+      font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 0.72rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 8px 20px; border: 1px solid var(--border);
+      background: transparent; color: var(--text-muted);
+      cursor: pointer; transition: all 0.3s;
+    }
+    .hero-season:hover { border-color: var(--accent); color: var(--accent); }
+    .hero-season.active { background: var(--text); color: #fff; border-color: var(--text); }
+
+    /* TIMELINE */
+    .timeline-section {
+      max-width: 900px; margin: 0 auto; padding: 40px 24px 100px;
+      position: relative;
+    }
+    .timeline-line {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--border);
+      transform: translateX(-50%);
+    }
+    .timeline-line-fill {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 2px;
+      height: 0;
+      background: linear-gradient(180deg, var(--accent), var(--accent-light));
+      transform: translateX(-50%);
+      transition: height 0.1s linear;
+    }
+
+    /* STEP */
+    .step {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 80px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+    }
+    .step.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .step:nth-child(odd) { flex-direction: row; }
+    .step:nth-child(even) { flex-direction: row-reverse; }
+
+    .step-dot {
+      position: absolute;
+      left: 50%;
+      top: 24px;
+      width: 18px; height: 18px;
+      background: var(--bg);
+      border: 3px solid var(--border);
+      border-radius: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      transition: border-color 0.5s, background 0.5s, box-shadow 0.5s;
+    }
+    .step.visible .step-dot {
+      border-color: var(--accent);
+      background: var(--accent);
+      box-shadow: 0 0 0 6px var(--accent-glow);
+    }
+
+    .step-content {
+      width: calc(50% - 50px);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 32px;
+      position: relative;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    }
+    .step-content:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.06);
+      border-color: var(--accent);
+    }
+    .step:nth-child(odd) .step-content { margin-right: auto; }
+    .step:nth-child(even) .step-content { margin-left: auto; }
+
+    .step-number {
+      font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 3rem;
+      color: var(--accent-glow); line-height: 1; margin-bottom: 8px;
+      opacity: 0.6;
+    }
+    .step-week {
+      font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 0.7rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 10px;
+    }
+    .step-title {
+      font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 1.4rem;
+      letter-spacing: 0.02em; text-transform: uppercase;
+      line-height: 1.2; margin-bottom: 10px;
+    }
+    .step-desc {
+      font-size: 0.88rem; color: var(--text-secondary); line-height: 1.7; font-weight: 300;
+    }
+    .step-icon {
+      width: 48px; height: 48px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--accent-glow);
+      border-radius: 12px;
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+    }
+    .step-detail {
+      margin-top: 16px; padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .step-detail-item {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.8rem; color: var(--text-secondary);
+      margin-bottom: 8px; font-weight: 400;
+    }
+    .step-detail-item .dot {
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* CURRENT SEASON BANNER */
+    .current-banner {
+      max-width: 900px; margin: 0 auto 0;
+      padding: 0 24px;
+    }
+    .current-card {
+      background: var(--bg-card);
+      border: 2px solid var(--accent);
+      padding: 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .current-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light), var(--accent));
+    }
+    .current-label {
+      font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 0.7rem;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 12px;
+    }
+    .current-title {
+      font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1.8rem;
+      text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px;
+    }
+    .current-desc {
+      font-size: 0.9rem; color: var(--text-secondary); font-weight: 300; line-height: 1.6;
+      max-width: 500px; margin: 0 auto;
+    }
+    .current-progress {
+      margin-top: 28px;
+      display: flex; gap: 4px; justify-content: center; align-items: center;
+    }
+    .progress-seg {
+      height: 6px; flex: 1; max-width: 60px;
+      background: var(--border); border-radius: 3px;
+      overflow: hidden; position: relative;
+    }
+    .progress-seg.filled { background: var(--accent); }
+    .progress-seg.active {
+      background: var(--border);
+    }
+    .progress-seg.active::after {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 60%;
+      background: var(--accent);
+      border-radius: 3px;
+      animation: progressPulse 2s ease-in-out infinite;
+    }
+    @keyframes progressPulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+    .progress-labels {
+      display: flex; justify-content: space-between; margin-top: 10px;
+      max-width: 500px; margin-left: auto; margin-right: auto;
+    }
+    .progress-label {
+      font-size: 0.6rem; font-family: 'Oswald', sans-serif; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted);
+    }
+    .progress-label.active { color: var(--accent); font-weight: 700; }
+
+    /* FOOTER */
+    .footer {
+      background: #fff; border-top: 1px solid var(--border);
+      text-align: center; padding: 40px 24px; margin-top: 80px;
+    }
+    .footer p { font-size: 0.75rem; color: var(--text-muted); line-height: 1.8; }
+    .footer a { color: var(--accent); text-decoration: none; }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .hero { padding: 60px 16px 40px; }
+      .hero h1 { font-size: 2rem; }
+      .hero p { font-size: 0.9rem; }
+      .timeline-line, .timeline-line-fill { left: 24px; }
+      .step { flex-direction: column !important; padding-left: 50px; margin-bottom: 48px; }
+      .step-dot { left: 24px; top: 0; }
+      .step-content { width: 100%; }
+      .step:nth-child(odd) .step-content,
+      .step:nth-child(even) .step-content { margin: 0; }
+      .step-number { font-size: 2.2rem; }
+      .step-title { font-size: 1.2rem; }
+      .step-content { padding: 24px; }
+      .current-card { padding: 28px 20px; }
+      .current-title { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="https://www.germaniabrewhaus.com">
+      <img class="nav-logo" src="https://images.squarespace-cdn.com/content/v1/5a9816df7e3c3a7e13c823d5/7b8ab17d-1e6a-4e5c-bcb9-4486c554221e/GBH+Logo+%282%29+copy.png?format=300w" alt="Germania Brew Haus">
+    </a>
+    <ul class="nav-links">
+      <li><a href="https://www.germaniabrewhaus.com">Home</a></li>
+      <li><a href="https://order.dripos.com/Germania-Brew-Haus">Order Now</a></li>
+      <li><a href="https://www.germaniabrewhaus.com/locations">Locations</a></li>
+      <li><a href="#" class="active">Our Process</a></li>
+    </ul>
+    <button class="nav-mobile" onclick="document.querySelector('.nav-links').style.display = document.querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex'">☰</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>How We Craft<br>Every Menu</h1>
+  <p>Every seasonal menu at Germania goes through a meticulous 8–10 week journey from spark of an idea to the drink in your hand. Here's how we do it.</p>
+  <div class="hero-divider"></div>
+  <div class="hero-seasons">
+    <span class="hero-season active">🌸 Spring</span>
+    <span class="hero-season">☀️ Summer</span>
+    <span class="hero-season">🍂 Fall</span>
+    <span class="hero-season">❄️ Winter</span>
+  </div>
+</section>
+
+<!-- Current Season Status -->
+<div class="current-banner">
+  <div class="current-card">
+    <div class="current-label">✦ Currently In Progress</div>
+    <div class="current-title">Summer 2026 Menu</div>
+    <div class="current-desc">Our team is deep in recipe development — testing, tasting, and refining the drinks that'll define your summer.</div>
+    <div class="current-progress">
+      <div class="progress-seg filled"></div>
+      <div class="progress-seg filled"></div>
+      <div class="progress-seg filled"></div>
+      <div class="progress-seg active"></div>
+      <div class="progress-seg"></div>
+      <div class="progress-seg"></div>
+    </div>
+    <div class="progress-labels">
+      <span class="progress-label">Ideas</span>
+      <span class="progress-label">Voting</span>
+      <span class="progress-label active">Recipe Dev</span>
+      <span class="progress-label">Pre-Launch</span>
+    </div>
+  </div>
+</div>
+
+<section class="timeline-section">
+  <div class="timeline-line"></div>
+  <div class="timeline-line-fill" id="timelineFill"></div>
+
+  <!-- Step 1: Idea Collection -->
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-content">
+      <div class="step-icon">💡</div>
+      <div class="step-week">Weeks 1–2</div>
+      <div class="step-number">01</div>
+      <div class="step-title">Idea Submissions</div>
+      <div class="step-desc">
+        Every seasonal menu starts with our team. Baristas, managers, and kitchen staff submit drink ideas — flavor combos, cultural inspirations, customer requests they've been hearing. No idea is too wild at this stage.
+      </div>
+      <div class="step-detail">
+        <div class="step-detail-item"><span class="dot"></span>Open submission form goes out to all 4 locations</div>
+        <div class="step-detail-item"><span class="dot"></span>Staff pitch flavor profiles, ingredient ideas, and vibes</div>
+        <div class="step-detail-item"><span class="dot"></span>Typically receive 30–50 unique submissions</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 2: Voting -->
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-content">
+      <div class="step-icon">🗳️</div>
+      <div class="step-week">Week 3</div>
+      <div class="step-number">02</div>
+      <div class="step-title">Team Voting</div>
+      <div class="step-desc">
+        The full team votes on their favorites. Every voice matters — from our newest barista to our head chef. The top vote-getters move forward to development.
+      </div>
+      <div class="step-detail">
+        <div class="step-detail-item"><span class="dot"></span>Anonymous voting across all locations</div>
+        <div class="step-detail-item"><span class="dot"></span>Top 8–12 concepts advance to recipe development</div>
+        <div class="step-detail-item"><span class="dot"></span>Team sees results live — builds excitement</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 3: Finalization -->
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-content">
+      <div class="step-icon">📋</div>
+      <div class="step-week">Week 4</div>
+      <div class="step-number">03</div>
+      <div class="step-title">Concept Finalization</div>
+      <div class="step-desc">
+        Leadership reviews the top picks, considers seasonality, ingredient sourcing, menu balance, and operational feasibility. The final lineup gets the green light.
+      </div>
+      <div class="step-detail">
+        <div class="step-detail-item"><span class="dot"></span>Balance sweet, bridge, artisanal, and tea categories</div>
+        <div class="step-detail-item"><span class="dot"></span>Evaluate ingredient availability and cost</div>
+        <div class="step-detail-item"><span class="dot"></span>Final menu of 5–8 new seasonal drinks selected</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 4: Recipe Dev -->
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-content">
+      <div class="step-icon">🧪</div>
+      <div class="step-week">Weeks 5–8</div>
+      <div class="step-number">04</div>
+      <div class="step-title">Recipe Development</div>
+      <div class="step-desc">
+        This is where the magic happens. Our Chef and team spend 3–4 weeks perfecting every recipe — haus-made syrups, sauce ratios, temperature profiles, and presentation. Every drink gets tested dozens of times.
+      </div>
+      <div class="step-detail">
+        <div class="step-detail-item"><span class="dot"></span>Haus-made syrups and sauces crafted from scratch</div>
+        <div class="step-detail-item"><span class="dot"></span>Multiple rounds of taste testing with the full team</div>
+        <div class="step-detail-item"><span class="dot"></span>Nutrition calculated from actual recipe ingredients</div>
+        <div class="step-detail-item"><span class="dot"></span>Cost analysis ensures quality at a fair price</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 5: Pre-Launch -->
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-content">
+      <div class="step-icon">📸</div>
+      <div class="step-week">Weeks 9–10</div>
+      <div class="step-number">05</div>
+      <div class="step-title">Pre-Launch</div>
+      <div class="step-desc">
+        Recipes are locked. Now we prepare for launch — training every barista across all 4 locations, shooting photos, building signage, and updating our digital menus. Every location launches simultaneously.
+      </div>
+      <div class="step-detail">
+        <div class="step-detail-item"><span class="dot"></span>Staff training at all 4 Germania locations</div>
+        <div class="step-detail-item"><span class="dot"></span>Professional photography and menu design</div>
+        <div class="step-detail-item"><span class="dot"></span>POS system updates and ingredient ordering</div>
+        <div class="step-detail-item"><span class="dot"></span>Social media teasers build anticipation</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 6: Launch -->
+  <div class="step">
+    <div class="step-dot"></div>
+    <div class="step-content">
+      <div class="step-icon">🚀</div>
+      <div class="step-week">Launch Day</div>
+      <div class="step-number">06</div>
+      <div class="step-title">Menu Launch</div>
+      <div class="step-desc">
+        Launch day is a celebration. All 4 locations debut the new menu together. Our team is excited because they helped create it — and that energy is contagious. Your new favorite drink is waiting.
+      </div>
+      <div class="step-detail">
+        <div class="step-detail-item"><span class="dot"></span>Simultaneous launch across Alton, Godfrey, East Alton & Jerseyville</div>
+        <div class="step-detail-item"><span class="dot"></span>Team-created drinks get credited to their inventors</div>
+        <div class="step-detail-item"><span class="dot"></span>Fresh haus-made ingredients prepared for day one</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<footer class="footer">
+  <p>
+    Every drink. Every season. Made with intention.<br>
+    <a href="https://www.germaniabrewhaus.com">Germania Brew Haus</a> · Alton · Godfrey · East Alton · Jerseyville
+  </p>
+</footer>
+
+<script>
+// Scroll-triggered animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('.step').forEach(step => observer.observe(step));
+
+// Timeline fill on scroll
+function updateTimelineFill() {
+  const section = document.querySelector('.timeline-section');
+  const fill = document.getElementById('timelineFill');
+  if (!section || !fill) return;
+
+  const rect = section.getBoundingClientRect();
+  const sectionTop = rect.top;
+  const sectionHeight = rect.height;
+  const viewportHeight = window.innerHeight;
+
+  const scrolled = Math.max(0, viewportHeight * 0.4 - sectionTop);
+  const progress = Math.min(scrolled / sectionHeight, 1);
+  fill.style.height = (progress * sectionHeight) + 'px';
+}
+
+window.addEventListener('scroll', updateTimelineFill, { passive: true });
+updateTimelineFill();
+
+// Season tab interaction (visual only for now)
+document.querySelectorAll('.hero-season').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.hero-season').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+// Embed mode
+if (new URLSearchParams(location.search).has('embed')) {
+  document.body.classList.add('embed-mode');
+  function reportHeight() {
+    var h = document.body.scrollHeight;
+    parent.postMessage({ type: 'germania-resize', height: Math.ceil(h) }, '*');
+  }
+  setTimeout(reportHeight, 300);
+  setInterval(reportHeight, 800);
+}
+</script>
+</body>
+</html>
